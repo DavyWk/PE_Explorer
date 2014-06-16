@@ -1,5 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using PE_Explorer.Core.PE.Headers.Enums;
 
@@ -25,6 +26,12 @@ namespace PE_Explorer.Core.PE.Headers
             NumberOfSymbols = br.ReadUInt32();
             SizeOfOptionalHeader = br.ReadUInt16();
             Characteristics = br.ReadUInt16();
+
+            if (Machine == (ushort)EMachine.IA64 || Machine == (ushort)EMachine.AMD64
+                || Machine == (ushort)EMachine.Alpha64 || Machine == (ushort)EMachine.APX64)
+                throw new BadImageFormatException("64-bit PE, not supported.");
+            else if (Machine != (ushort)EMachine.I386)
+                throw new BadImageFormatException("Unknown file format");
         }
     }
 

@@ -49,11 +49,16 @@ namespace PE_Explorer
                 Logger.Log(ELogTypes.ERROR,ex.Message);
                 Exit();
             }
-            
+
+            new ImageCharacteristicsParser(pe.peHeader.fileHeader.Characteristics).Parse();
             Console.WriteLine("\t\t\t Optional Header");
             new OptionalHeaderParser(pe.peHeader.optionalHeader).Parse();
             Console.WriteLine();
+
             Console.WriteLine("\t\t\t Sections");
+            Console.WriteLine();
+            Console.WriteLine("Section alignment : 0x{0:X}", pe.peHeader.optionalHeader.SectionAlignment);
+            Console.WriteLine("Number of sections : {0}", pe.peHeader.fileHeader.NumberOfSections);
             Console.WriteLine();
             for (int i = 0; i < pe.sections.Count; i++ )
             {

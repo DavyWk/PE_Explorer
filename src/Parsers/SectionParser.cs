@@ -26,7 +26,7 @@ namespace PE_Explorer.Parsers
 
         private class SectionCharacteristicsParser
         {
-            private uint characteristics = 0;
+            private uint characteristics;
             public SectionCharacteristicsParser(uint sectionCharacteristics)
             {
                 characteristics = sectionCharacteristics;
