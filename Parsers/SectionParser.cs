@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Text;
+
+using PE_Explorer.Core.PE.Enums;
 using PE_Explorer.Core.PE.Headers;
-using PE_Explorer.Core.PE.Headers.Enums;
+
 
 namespace PE_Explorer.Parsers
 {
     public class SectionParser
     {
-        private SectionHeader header;
-        public SectionParser(SectionHeader sectionHeader)
+        private readonly SectionHeader header;
+        public SectionParser(ref SectionHeader sectionHeader)
         {
             header = sectionHeader;  
         }

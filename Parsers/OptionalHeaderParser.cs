@@ -5,8 +5,8 @@ namespace PE_Explorer.Parsers
 {
     class OptionalHeaderParser
     {
-        private OptionalHeader header;
-        public OptionalHeaderParser(OptionalHeader optionalHeader)
+        private readonly OptionalHeader header;
+        public OptionalHeaderParser(ref OptionalHeader optionalHeader)
         {
             header = optionalHeader;
         }

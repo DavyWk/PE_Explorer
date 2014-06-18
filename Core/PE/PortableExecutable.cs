@@ -2,8 +2,11 @@
 using System.IO;
 using System.Collections.Generic;
 
+using PE_Explorer.Utils;
 using PE_Explorer.Core.DOS;
 using PE_Explorer.Core.PE.Headers;
+using PE_Explorer.Core.PE.ImportTable;
+
 
 
 namespace PE_Explorer.Core.PE
@@ -33,6 +36,9 @@ namespace PE_Explorer.Core.PE
                 sections.Add(new SectionHeader(br));
             }
             sections.TrimExcess();
+            long offset = Utils.Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
+            br.BaseStream.Seek(offset,SeekOrigin.Begin);
+            ImportDescriptor id = new ImportDescriptor(br);
         }
 
       public void Dispose()

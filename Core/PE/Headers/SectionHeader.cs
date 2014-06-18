@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.IO;
 
-using PE_Explorer.Core.PE.Headers.Enums;
+using PE_Explorer.Core.PE.Enums;
 
 namespace PE_Explorer.Core.PE.Headers
 {

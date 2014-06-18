@@ -1,7 +1,7 @@
 ﻿using System;
 
 using PE_Explorer.Utils;
-using PE_Explorer.Core.PE.Headers.Enums;
+using PE_Explorer.Core.PE.Enums;
 
 namespace PE_Explorer.Parsers
 {
