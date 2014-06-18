@@ -1,0 +1,5 @@
+A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\obj\Debug\PE_Explorer.csprojResolveAssemblyReference.cache
+A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\bin\Debug\PE_Explorer.exe
+A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\bin\Debug\PE_Explorer.pdb
+A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\obj\Debug\PE_Explorer.exe
+A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\obj\Debug\PE_Explorer.pdb
