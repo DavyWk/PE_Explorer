@@ -1,4 +1,0 @@
-A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\bin\Release\PE_Explorer.exe
-A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\bin\Release\PE_Explorer.pdb
-A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\obj\Release\PE_Explorer.exe
-A:\Visual Studio 2013\Projects\PE Explorer\PE_Explorer\obj\Release\PE_Explorer.pdb
