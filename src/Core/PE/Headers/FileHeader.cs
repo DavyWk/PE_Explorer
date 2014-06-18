@@ -29,7 +29,7 @@ namespace PE_Explorer.Core.PE.Headers
 
             if (Machine == (ushort)EMachine.IA64 || Machine == (ushort)EMachine.AMD64
                 || Machine == (ushort)EMachine.Alpha64 || Machine == (ushort)EMachine.APX64)
-                throw new BadImageFormatException("64-bit PE, not supported.");
+                throw new NotSupportedException("64-bit PE, not supported.");
             else if (Machine != (ushort)EMachine.I386)
                 throw new BadImageFormatException("Unknown file format");
         }

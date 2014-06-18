@@ -93,6 +93,7 @@ namespace PE_Explorer.Core.PE.Headers
             LoaderFlags = br.ReadUInt32();
             NumberOfRvaAndSizes = br.ReadUInt32();
 
+            // 16 data directories
             ExportDirectory = new DataDirectory(br);
             ImportDirectory = new DataDirectory(br);
             RessourceDirectory = new DataDirectory(br);
@@ -109,7 +110,7 @@ namespace PE_Explorer.Core.PE.Headers
             DelayImport = new DataDirectory(br);
             DOTNETMetadata = new DataDirectory(br);
             Reserved = new DataDirectory(br);
-
+            
         }
     }
 

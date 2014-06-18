@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 
-using PE_Explorer.Parsers;
 using PE_Explorer.Utils;
+using PE_Explorer.Parsers;
 using PE_Explorer.Core.PE;
 
 namespace PE_Explorer
@@ -27,7 +27,6 @@ namespace PE_Explorer
             FileInfo fi = new FileInfo(args[0]);
             Logger.Log(ELogTypes.INFO, string.Format("Loading {0}", fi.Name));
             Logger.Log(ELogTypes.INFO, string.Format("File size : {0} bytes", fi.Length));
-            Console.WriteLine();
             
             try
             {
@@ -51,6 +50,10 @@ namespace PE_Explorer
             }
 
             new ImageCharacteristicsParser(pe.peHeader.fileHeader.Characteristics).Parse();
+            new SubsystemParser(pe.peHeader.optionalHeader.Subsystem).Parse();
+            Console.WriteLine();
+
+
             Console.WriteLine("\t\t\t Optional Header");
             new OptionalHeaderParser(pe.peHeader.optionalHeader).Parse();
             Console.WriteLine();
