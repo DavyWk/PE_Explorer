@@ -1,11 +1,12 @@
+# Executables
 *.exe
+*.vshost.exe
+
+# Visual studio crap
 *.csproj
 *.csproj.user
-*.exe
 *.pdb
-*.vshost.exe
 *.vshost.exe.manifest
-
-obj/
-Properties/
-bin/
+obj/*
+Properties/*
+bin/*
