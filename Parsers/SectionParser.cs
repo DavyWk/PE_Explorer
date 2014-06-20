@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text;
 
-using PE_Explorer.Core.PE.Enums;
-using PE_Explorer.Core.PE.Headers;
+using Core.PE.Enums;
+using Core.PE.Headers;
 
 
-namespace PE_Explorer.Parsers
+namespace Parsers
 {
     public class SectionParser
     {

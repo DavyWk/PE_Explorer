@@ -2,14 +2,15 @@
 using System.IO;
 using System.Collections.Generic;
 
-using PE_Explorer.Utils;
-using PE_Explorer.Core.DOS;
-using PE_Explorer.Core.PE.Headers;
-using PE_Explorer.Core.PE.ImportTable;
+using Utils;
+using Core.Utilities;
+using Core.DOS;
+using Core.PE.Headers;
+using Core.PE.ImportTable;
 
 
 
-namespace PE_Explorer.Core.PE
+namespace Core.PE
 {
     public class PortableExecutable : IDisposable
     {
@@ -36,9 +37,21 @@ namespace PE_Explorer.Core.PE
                 sections.Add(new SectionHeader(br));
             }
             sections.TrimExcess();
-            long offset = Utils.Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
+
+
+         /*  TESTING
+          
+            long offset = Utilities.Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
             br.BaseStream.Seek(offset,SeekOrigin.Begin);
             ImportDescriptor id = new ImportDescriptor(br);
+            br.BaseStream.Seek(Utilities.Utils.RVAToFileOffset(this,id.OriginalFirstThunk),SeekOrigin.Begin);
+            ImportNameTable nameTable = new ImportNameTable(br);
+
+            br.BaseStream.Seek(Utilities.Utils.RVAToFileOffset(this,nameTable.Names[0].AddressOfData),SeekOrigin.Begin);
+            ImportByName name = new ImportByName(br);
+            Logger.Log(ELogTypes.INFO, "Found first IMPORT_BY_NAME");
+            Logger.Log(ELogTypes.INFO,string.Format("Hint : 0x{0:X}  API : {1}",name.Hint,new string(name.Name)));
+          */
         }
 
       public void Dispose()

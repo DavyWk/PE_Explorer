@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PE_Explorer.Utils
+namespace Utils
 {
     public enum ELogTypes : byte
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 
-namespace PE_Explorer.Core.DOS
+namespace Core.DOS
 {
     [StructLayout(LayoutKind.Sequential,Pack = 1)]
     public struct DOSHeader           // DOS .EXE header

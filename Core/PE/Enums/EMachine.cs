@@ -1,4 +1,4 @@
-﻿namespace PE_Explorer.Core.PE.Enums
+﻿namespace Core.PE.Enums
 {
     // The comments are from winnt.h, Copyright (c) Microsoft Corporation
     public enum EMachine : ushort

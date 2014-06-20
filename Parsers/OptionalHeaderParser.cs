@@ -1,7 +1,7 @@
 ﻿using System;
-using PE_Explorer.Core.PE.Headers;
+using Core.PE.Headers;
 
-namespace PE_Explorer.Parsers
+namespace Parsers
 {
     class OptionalHeaderParser
     {

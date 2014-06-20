@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 
-namespace PE_Explorer.Core.PE.ImportTable
+namespace Core.PE.ImportTable
 {
     public struct ImportByName
     {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
 
-namespace PE_Explorer.Core.PE.Headers
+namespace Core.PE.Headers
 {
   
      [StructLayout(LayoutKind.Sequential,Pack = 1)]

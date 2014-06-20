@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 
-using PE_Explorer.Utils;
-using PE_Explorer.Parsers;
-using PE_Explorer.Core.PE;
-using PE_Explorer.Core.PE.Headers;
+using Parsers;
+using Core.PE;
+using Utils;
 
 namespace PE_Explorer
 {
@@ -50,27 +49,7 @@ namespace PE_Explorer
                 Exit();
             }
 
-            new ImageCharacteristicsParser(pe.peHeader.fileHeader.Characteristics).Parse();
-            new SubsystemParser(pe.peHeader.optionalHeader.Subsystem).Parse();
-
-           
-            Console.WriteLine();
-
-
-            Console.WriteLine("\t\t\t Optional Header");
-            new OptionalHeaderParser(ref pe.peHeader.optionalHeader).Parse();
-            Console.WriteLine();
-
-            Console.WriteLine("\t\t\t Sections");
-            Console.WriteLine();
-            Console.WriteLine("Section alignment : 0x{0:X}", pe.peHeader.optionalHeader.SectionAlignment);
-            Console.WriteLine("Number of sections : {0}", pe.peHeader.fileHeader.NumberOfSections);
-            Console.WriteLine();
-            for (int i = 0; i < pe.sections.Count; i++ )
-            {
-                SectionHeader sh = pe.sections[i];
-                new SectionParser(ref sh).Parse();
-            }
+            new PortableExecutableParser(pe).Parse();
 
 
                 Console.ReadLine();

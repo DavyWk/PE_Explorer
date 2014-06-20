@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace PE_Explorer.Core.PE.ImportTable
+namespace Core.PE.ImportTable
 {
     [StructLayout(LayoutKind.Sequential,Pack = 1)]
     public struct ImportNameTable
@@ -19,7 +19,7 @@ namespace PE_Explorer.Core.PE.ImportTable
             {
                 list.Add(t);
             }
-            list.Add(new ImportThunkData(br)); // the last NULL one
+            //list.Add(new ImportThunkData(br)); // the last NULL one
 
             Names = list.ToArray();
 

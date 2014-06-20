@@ -1,5 +1,4 @@
-﻿
-namespace PE_Explorer.Core.PE.Enums
+﻿namespace Core.PE.Enums
 {
     public enum ESubsystem : ushort
     {

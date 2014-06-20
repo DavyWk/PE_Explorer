@@ -2,9 +2,9 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
-using PE_Explorer.Core.PE.Enums;
+using Core.PE.Enums;
 
-namespace PE_Explorer.Core.PE.Headers
+namespace Core.PE.Headers
 {
     [StructLayout(LayoutKind.Sequential,Pack = 1 )]
     public struct FileHeader

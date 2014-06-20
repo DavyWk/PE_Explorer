@@ -1,7 +1,7 @@
-﻿using PE_Explorer.Utils;
-using PE_Explorer.Core.PE.Enums;
+﻿using Utils;
+using Core.PE.Enums;
 
-namespace PE_Explorer.Parsers
+namespace Parsers
 {
     public class SubsystemParser
     {

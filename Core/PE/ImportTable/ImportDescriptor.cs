@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
 
-namespace PE_Explorer.Core.PE.ImportTable
+namespace Core.PE.ImportTable
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct ImportDescriptor
@@ -10,7 +10,7 @@ namespace PE_Explorer.Core.PE.ImportTable
         public uint TimeDateStamp;
         public uint ForwarderChain;
         public uint Name;
-        public uint FirstThunk; // rva to import table
+        public uint FirstThunk; // rva to import address table
 
         public ImportDescriptor(BinaryReader br)
         {
@@ -19,6 +19,7 @@ namespace PE_Explorer.Core.PE.ImportTable
             ForwarderChain = br.ReadUInt32();
             Name = br.ReadUInt32();
             FirstThunk = br.ReadUInt32();
+
         }
     }
 }

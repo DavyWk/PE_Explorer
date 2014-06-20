@@ -1,7 +1,7 @@
-﻿using PE_Explorer.Core.PE;
-using PE_Explorer.Core.PE.Headers;
+﻿using Core.PE;
+using Core.PE.Headers;
 
-namespace PE_Explorer.Core.Utils
+namespace Core.Utilities
 {
     public static class Utils
     {
