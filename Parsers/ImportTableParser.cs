@@ -18,6 +18,12 @@ namespace Parsers
 
        public void Parse()
        {
+           if(pe.imports.Count == 0)
+           {
+               Logger.Log(ELogTypes.Error, "No import table");
+               return;
+           }
+
            Console.WriteLine("Press ENTER to see the parsed import name table");
            Console.ReadLine();
            Console.WriteLine();
@@ -38,7 +44,6 @@ namespace Parsers
                Console.WriteLine();
            }
            Utilities.Logger.Log(Utilities.ELogTypes.Info, "Done parsing import table");
-           Console.ReadLine();
        }
 
         private class ImportByNameParser

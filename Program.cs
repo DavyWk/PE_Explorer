@@ -51,6 +51,8 @@ namespace PE_Explorer
 
              new PortableExecutableParser(pe).Parse();
 
+
+             Console.ReadLine();
         }
 
         private static void Exit(int exitCode = 1)

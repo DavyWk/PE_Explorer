@@ -54,26 +54,46 @@ namespace Core.PE
 
             while((id = new ImportDescriptor(br)).OriginalFirstThunk != 0)
             {
-                br.BaseStream.Seek(Utils.RVAToFileOffset(this, id.OriginalFirstThunk), SeekOrigin.Begin);
+
+                br.BaseStream.Seek(Utils.RVAToFileOffset(this, id.Name), SeekOrigin.Begin);
+                List<char> dllName = new List<char>();
+                char c;
+
+                while ((c = br.ReadChar()) != '\0')
+                {
+                    dllName.Add(c);
+                }
+                dllName.Add(c); // NULL terminator
+
+
+                br.BaseStream.Seek(Utils.RVAToFileOffset(this, (id.OriginalFirstThunk != 0 ? id.OriginalFirstThunk : id.FirstThunk)), SeekOrigin.Begin);
                 ImportNameTable nameTable = new ImportNameTable(br);
                 List<ImportByName> names = new List<ImportByName>();
 
                 for(int i = 0; i < nameTable.Names.Length; i++)
                 {
-                    br.BaseStream.Seek(Utils.RVAToFileOffset(this, nameTable.Names[i].AddressOfData), SeekOrigin.Begin);
-                    names.Add(new ImportByName(br));
+                   
+                    int ord;
+                    const uint ordFlag = 0x80000000;
+                    if ((ord = (int)(nameTable.Names[i].AddressOfData - ordFlag)) > 0) // if import by ordinal
+                    {
+                        const string ordStr = "Import by Ordinal" + "\0";
+                        ImportByName ordImport = new ImportByName
+                            {
+                                Hint = (ushort)ord,
+                                Name = ordStr.ToCharArray(),
+                            };
+                        names.Add(ordImport);
+                    }
+                    else
+                    {
+                        br.BaseStream.Seek(Utils.RVAToFileOffset(this, nameTable.Names[i].AddressOfData), SeekOrigin.Begin);
+                        names.Add(new ImportByName(br));
+                    }
+                    
                 }
 
-               
-                br.BaseStream.Seek(Utils.RVAToFileOffset(this, id.Name), SeekOrigin.Begin);
-                List<char> dllName = new List<char>();
-                char c;
 
-                while((c = br.ReadChar()) != '\0')
-                {
-                    dllName.Add(c);
-                }
-                dllName.Add(c); // NULL terminator
 
 
                 imports.Add(new string(dllName.ToArray()), names.ToArray());
