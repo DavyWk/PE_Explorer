@@ -19,10 +19,8 @@ namespace Core.PE.ImportTable
             {
                 list.Add(t);
             }
-            //list.Add(new ImportThunkData(br)); // the last NULL one
-
+            // does not add the last NULL one
             Names = list.ToArray();
-
 
         }
     }

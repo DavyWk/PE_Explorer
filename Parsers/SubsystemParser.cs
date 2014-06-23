@@ -1,4 +1,4 @@
-﻿using Utils;
+﻿using Utilities;
 using Core.PE.Enums;
 
 namespace Parsers
@@ -59,7 +59,8 @@ namespace Parsers
                 default:
                     break;
             }
-            Logger.Log(ELogTypes.INFO, string.Format("{0} subsystem", output));
+            Logger.Log(ELogTypes.Info, string.Format("{0} subsystem", output));
+            System.Console.WriteLine();
         }
     }
 }

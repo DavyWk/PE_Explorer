@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-using Utils;
+using Utilities;
 using Core.Utilities;
 using Core.DOS;
 using Core.PE.Headers;
@@ -16,7 +16,9 @@ namespace Core.PE
     {
         public DOSHeader dosHeader;
         public PEHeader peHeader;
-        public List<SectionHeader> sections = new List<SectionHeader>();
+        public SectionHeader[] sections;
+        public Dictionary<string, ImportByName[]> imports = new Dictionary<string, ImportByName[]>();
+        // <name,api[]>
 
         private BinaryReader br;
 
@@ -32,29 +34,53 @@ namespace Core.PE
             br.BaseStream.Seek(dosHeader.GetPEHeaderOffset(), SeekOrigin.Begin); // e_lfanew offset
             peHeader = new PEHeader(br);
 
+            // SECTIONS
+            List<SectionHeader> shList = new List<SectionHeader>();
             for(int i = 1; i <= peHeader.fileHeader.NumberOfSections; i++)
             {
-                sections.Add(new SectionHeader(br));
+                shList.Add(new SectionHeader(br));
             }
-            sections.TrimExcess();
+            sections = shList.ToArray();
 
 
-         /*  TESTING
-          
-            long offset = Utilities.Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
+            // IMPORT TABLE
+            long offset = Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
             br.BaseStream.Seek(offset,SeekOrigin.Begin);
-            ImportDescriptor id = new ImportDescriptor(br);
-            br.BaseStream.Seek(Utilities.Utils.RVAToFileOffset(this,id.OriginalFirstThunk),SeekOrigin.Begin);
-            ImportNameTable nameTable = new ImportNameTable(br);
+            ImportDescriptor id;
 
-            br.BaseStream.Seek(Utilities.Utils.RVAToFileOffset(this,nameTable.Names[0].AddressOfData),SeekOrigin.Begin);
-            ImportByName name = new ImportByName(br);
-            Logger.Log(ELogTypes.INFO, "Found first IMPORT_BY_NAME");
-            Logger.Log(ELogTypes.INFO,string.Format("Hint : 0x{0:X}  API : {1}",name.Hint,new string(name.Name)));
-          */
+            while((id = new ImportDescriptor(br)).OriginalFirstThunk != 0)
+            {
+                br.BaseStream.Seek(Utils.RVAToFileOffset(this, id.OriginalFirstThunk), SeekOrigin.Begin);
+                ImportNameTable nameTable = new ImportNameTable(br);
+                List<ImportByName> names = new List<ImportByName>();
+
+                for(int i = 0; i < nameTable.Names.Length; i++)
+                {
+                    br.BaseStream.Seek(Utils.RVAToFileOffset(this, nameTable.Names[i].AddressOfData), SeekOrigin.Begin);
+                    names.Add(new ImportByName(br));
+                }
+
+               
+                br.BaseStream.Seek(Utils.RVAToFileOffset(this, id.Name), SeekOrigin.Begin);
+                List<char> dllName = new List<char>();
+                char c;
+
+                while((c = br.ReadChar()) != '\0')
+                {
+                    dllName.Add(c);
+                }
+                dllName.Add(c); // NULL terminator
+
+
+                imports.Add(new string(dllName.ToArray()), names.ToArray());
+
+                offset += 20; // size of ImportDescriptor
+                br.BaseStream.Seek(offset, SeekOrigin.Begin);
+            }
+            
         }
 
-      public void Dispose()
+        public void Dispose()
         {
             br.Dispose();
         }

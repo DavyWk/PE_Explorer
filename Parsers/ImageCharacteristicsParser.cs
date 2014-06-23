@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Utils;
+using Utilities;
 using Core.Utilities;
 using Core.PE.Enums;
 
@@ -26,7 +26,7 @@ namespace Parsers
             else if ((characteritics & (uint)EImageCharacteristics.Executable) > 0)
                 print = "Executable";
 
-            Logger.Log(ELogTypes.INFO, string.Format("{0} file detected", print));
+            Logger.Log(ELogTypes.Info, string.Format("{0} file detected", print));
 
         }
     }

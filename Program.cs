@@ -3,7 +3,7 @@ using System.IO;
 
 using Parsers;
 using Core.PE;
-using Utils;
+using Utilities;
 
 namespace PE_Explorer
 {
@@ -15,44 +15,42 @@ namespace PE_Explorer
             BinaryReader br = null;
 
             Console.Title = "PE Explorer";
-            Logger.Log(ELogTypes.INFO,"Copyright (c) 2014 DavyWk : https://github.com/DavyWk");
+            Logger.Log(ELogTypes.Info, "Copyright (c) 2014 DavyWk : https://github.com/DavyWk");
             Console.WriteLine();
 
-            if(args.Length != 1)
+            if (args.Length != 1)
             {
-                Logger.Log(ELogTypes.ERROR, "Usage : \"PE Explorer pathtoPEfile\" ");
+                Logger.Log(ELogTypes.Error, "Usage : \"PE Explorer pathtoPEfile\" ");
                 Exit();
             }
 
             FileInfo fi = new FileInfo(args[0]);
-            Logger.Log(ELogTypes.INFO, string.Format("Loading {0}", fi.Name));
-            Logger.Log(ELogTypes.INFO, string.Format("File size : {0} bytes", fi.Length));
-            
+            Logger.Log(ELogTypes.Info, string.Format("Loading {0}", fi.Name));
+            Logger.Log(ELogTypes.Info, string.Format("File size : {0} bytes", fi.Length));
+
             try
             {
                 br = new BinaryReader(File.OpenRead(args[0]));
             }
             catch (Exception ex)
             {
-                Logger.Log(ELogTypes.ERROR, "Error while opening the file : ");
-                Logger.Log(ELogTypes.ERROR, ex.Message);
+                Logger.Log(ELogTypes.Error, "Error while opening the file : ");
+                Logger.Log(ELogTypes.Error, ex.Message);
                 Exit();
             }
-           
+
             try
             {
                 pe = new PortableExecutable(br);
             }
             catch (Exception ex)
             {
-                Logger.Log(ELogTypes.ERROR,ex.Message);
+                Logger.Log(ELogTypes.Error, ex.Message);
                 Exit();
             }
 
-            new PortableExecutableParser(pe).Parse();
+             new PortableExecutableParser(pe).Parse();
 
-
-                Console.ReadLine();
         }
 
         private static void Exit(int exitCode = 1)
@@ -60,6 +58,6 @@ namespace PE_Explorer
             Console.ReadLine();
             Environment.Exit(exitCode);
         }
-            
+
     }
 }

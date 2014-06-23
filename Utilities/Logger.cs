@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Utils
+namespace Utilities
 {
     public enum ELogTypes : byte
     {
-        DEBUG = 0,
-        ERROR = 1,
-        INFO = 2
+        Debug = 0,
+        Error = 1,
+        Info = 2
     }
     public static class Logger
     {
@@ -17,13 +17,13 @@ namespace Utils
             ConsoleColor c;
             switch(logType)
             {
-                case ELogTypes.DEBUG:
+                case ELogTypes.Debug:
                     c = ConsoleColor.Green;
                     break;
-                case ELogTypes.ERROR:
+                case ELogTypes.Error:
                     c = ConsoleColor.Red;
                     break;
-                case ELogTypes.INFO:
+                case ELogTypes.Info:
                     c = ConsoleColor.White;
                     break;
                 default:
@@ -32,7 +32,7 @@ namespace Utils
             }
 
             Console.ForegroundColor = c;
-            Console.Write(string.Format("<{0}>", msg[(int)logType]).PadRight(7,' '));
+            Console.Write(string.Format("<{0}>", logType.ToString()).PadRight(7,' '));
             Console.ResetColor();
             Console.WriteLine(" {0}",format);
 

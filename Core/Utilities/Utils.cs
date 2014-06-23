@@ -11,7 +11,7 @@ namespace Core.Utilities
                 return 0;
 
             SectionHeader section;
-            for(int i = 0; i < pe.sections.Count; i++)
+            for(int i = 0; i < pe.sections.Length; i++)
             {
                 section = pe.sections[i];
                 if (rva >= section.VirtualAddress && rva < section.VirtualAddress + section.VirtualSize )

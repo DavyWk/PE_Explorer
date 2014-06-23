@@ -9,7 +9,7 @@ namespace Core.PE.Headers
     public struct SectionHeader
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-        public char[] Name;
+        public char[] Name; // NOT Guaranted to be null terminated
         public uint VirtualSize; // OR PhysicalAddress
         public uint VirtualAddress; // First byte of the section when loaded in memory
         public uint SizeOfRawData; // Size of initialized data on disk
