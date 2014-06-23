@@ -45,6 +45,10 @@ namespace Core.PE
 
             // IMPORT TABLE
             long offset = Utils.RVAToFileOffset(this,peHeader.optionalHeader.ImportDirectory.VirtualAddress);
+
+            if (offset == 0) // null import table
+                return;
+
             br.BaseStream.Seek(offset,SeekOrigin.Begin);
             ImportDescriptor id;
 
