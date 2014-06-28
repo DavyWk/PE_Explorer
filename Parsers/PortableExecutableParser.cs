@@ -19,7 +19,8 @@ namespace Parsers
             new SubsystemParser(pe.peHeader.optionalHeader.Subsystem).Parse();
             new OptionalHeaderParser(ref pe.peHeader.optionalHeader).Parse();
             new SectionParser(pe.sections, pe.peHeader.optionalHeader.SectionAlignment).Parse();
-            new ImportTableParser(pe).Parse();
+            new ImportTableParser(pe.imports).Parse();
+            new ExportTableParser(pe.exports).Parse();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Parsers
 
             public void Parse()
             {
-                Console.WriteLine("Section Name : {0}", new string(header.Name));
+                Console.WriteLine("Section Name : {0}", Encoding.ASCII.GetString(header.Name));
                 Console.WriteLine("Virtual Size : 0x{0} bytes", header.VirtualSize);
                 Console.WriteLine("Virtual Address : 0x{0:X}", header.VirtualAddress);
                 Console.WriteLine("Size of Raw Data : 0x{0:X} bytes", header.SizeOfRawData);

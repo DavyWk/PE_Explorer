@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Core.PE.ImportTable
+namespace Core.PE.Imports
 {
     [StructLayout(LayoutKind.Sequential,Pack=1)]
     public struct ImportThunkData

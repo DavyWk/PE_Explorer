@@ -9,7 +9,7 @@ namespace Core.PE.Headers
     public struct SectionHeader
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-        public char[] Name; // NOT Guaranted to be null terminated
+        public byte[] Name; // NOT Guaranted to be null terminated
         public uint VirtualSize; // OR PhysicalAddress
         public uint VirtualAddress; // First byte of the section when loaded in memory
         public uint SizeOfRawData; // Size of initialized data on disk
@@ -22,7 +22,7 @@ namespace Core.PE.Headers
 
         public SectionHeader(BinaryReader br)
         {
-            Name = br.ReadChars(8);
+            Name = br.ReadBytes(8);
             VirtualSize = br.ReadUInt32();
             VirtualAddress = br.ReadUInt32();
             SizeOfRawData = br.ReadUInt32();

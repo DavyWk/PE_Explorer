@@ -32,7 +32,7 @@ namespace PE_Explorer
             {
                 br = new BinaryReader(File.OpenRead(args[0]));
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
                 Logger.Log(ELogTypes.Error, "Error while opening the file : ");
                 Logger.Log(ELogTypes.Error, ex.Message);
@@ -45,8 +45,13 @@ namespace PE_Explorer
             }
             catch (Exception ex)
             {
-                Logger.Log(ELogTypes.Error, ex.Message);
-                Exit();
+                if (ex is NotSupportedException || ex is BadImageFormatException)
+                {
+                    Logger.Log(ELogTypes.Error, ex.Message);
+                    Exit();
+                }
+                else
+                    throw;
             }
 
              new PortableExecutableParser(pe).Parse();
