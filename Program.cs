@@ -2,7 +2,7 @@
 using System.IO;
 
 using Parsers;
-using Core.PE;
+using Core;
 using Utilities;
 
 namespace PE_Explorer

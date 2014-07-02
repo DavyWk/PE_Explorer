@@ -1,7 +1,4 @@
-﻿using  System;
-
-using Core.PE;
-using Core.PE.Headers;
+﻿using Core;
 
 namespace Parsers
 {

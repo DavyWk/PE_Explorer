@@ -12,7 +12,7 @@ using Core.PE.Exports;
 
 
 
-namespace Core.PE
+namespace Core
 {
     public class PortableExecutable : IDisposable
     {

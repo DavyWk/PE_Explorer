@@ -17,9 +17,10 @@ namespace Parsers
 
         public void Parse()
         {
-            if(exports.Length == 0) // no export table
+            if(exports == null) // no export table
             {
                 Logger.Log(ELogTypes.Info,"No export table");
+                return;
             }
 
             Console.WriteLine("Press ENTER to see the parsed export table");
