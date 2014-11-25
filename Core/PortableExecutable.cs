@@ -38,7 +38,7 @@ namespace Core
             peHeader = new PEHeader(br);
 
             // SECTIONS
-            List<SectionHeader> shList = new List<SectionHeader>();
+            var shList = new List<SectionHeader>();
             for(int i = 0; i < peHeader.fileHeader.NumberOfSections; i++)
             {
                 shList.Add(new SectionHeader(br));
@@ -64,8 +64,8 @@ namespace Core
 
 
                     br.BaseStream.Seek(Utils.RVAToFileOffset(this, (id.OriginalFirstThunk != 0 ? id.OriginalFirstThunk : id.FirstThunk)), SeekOrigin.Begin);
-                    ImportNameTable nameTable = new ImportNameTable(br);
-                    List<ImportByName> names = new List<ImportByName>();
+                    var nameTable = new ImportNameTable(br);
+                    var names = new List<ImportByName>();
 
                     for (int i = 0; i < nameTable.Names.Length; i++)
                     {
@@ -75,7 +75,7 @@ namespace Core
                         if ((ord = (int)(nameTable.Names[i].AddressOfData - ordFlag)) > 0) // if import by ordinal
                         {
                             const string ordStr = "Import by Ordinal";
-                            ImportByName ordImport = new ImportByName
+                            var ordImport = new ImportByName
                             {
                                 Hint = (ushort)ord,
                                 Name = Encoding.ASCII.GetBytes(ordStr),
@@ -108,17 +108,17 @@ namespace Core
             if(offset > 0)
             {
                 br.BaseStream.Seek(offset, SeekOrigin.Begin);
-                ExportDirectory exportDir = new ExportDirectory(br);
+                var exportDir = new ExportDirectory(br);
 
                 uint nExports = exportDir.NumberOfFunctions;
 
                 uint namesOffset = Utils.RVAToFileOffset(this,exportDir.AddressOfNames);
                 uint functionsOffset = Utils.RVAToFileOffset(this,exportDir.AddressOfFunctions);
 
-                List<Export> lstExport = new List<Export>();
+                var lstExport = new List<Export>();
                 for (int i = 0; i < nExports; i++)
                 {
-                    Export e = new Export();
+                    var e = new Export();
 
                     br.BaseStream.Seek(namesOffset, SeekOrigin.Begin);
                     br.BaseStream.Seek(Utils.RVAToFileOffset(this, br.ReadUInt32()), SeekOrigin.Begin);

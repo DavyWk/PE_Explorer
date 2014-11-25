@@ -10,7 +10,7 @@ namespace Utilities
     }
     public static class Logger
     {
-        private static string[] msg = new string[] {"Debug","Error","Info"};
+
         public static void Log(ELogTypes logType,string format)
         {
             

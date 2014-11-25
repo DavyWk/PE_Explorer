@@ -10,6 +10,7 @@ namespace Parsers
     class ImageCharacteristicsParser
     {
         private uint characteritics;
+
         public ImageCharacteristicsParser(uint imageCharacteristics)
         {
             characteritics = imageCharacteristics;

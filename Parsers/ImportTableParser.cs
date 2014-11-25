@@ -12,6 +12,7 @@ namespace Parsers
     public class ImportTableParser
     {
         private Dictionary<string, ImportByName[]> imports;
+
         public ImportTableParser(Dictionary<string, ImportByName[]> Imports)
         {
             imports = Imports;

@@ -7,6 +7,7 @@ namespace Parsers
     class OptionalHeaderParser
     {
         private readonly OptionalHeader header;
+
         public OptionalHeaderParser(ref OptionalHeader optionalHeader)
         {
             header = optionalHeader;

@@ -11,6 +11,7 @@ namespace Parsers
     {
         private readonly SectionHeader[] headers;
         private readonly uint alignment;
+
         public SectionParser(SectionHeader[] sectionHeaders, uint sectionAlignment)
         {
             headers = sectionHeaders;
@@ -35,6 +36,7 @@ namespace Parsers
         private class SectionHeaderParser
         {
             private readonly SectionHeader header;
+
             public SectionHeaderParser(ref SectionHeader sectionHeader)
             {
                 header = sectionHeader;
@@ -63,7 +65,7 @@ namespace Parsers
                 public string Parse()
                 { // returns a formatted string with all of the section's characteristics
 
-                    StringBuilder sb = new StringBuilder(string.Empty);
+                    var sb = new StringBuilder(string.Empty);
                     if (characteristics == 0)
                         return sb.ToString();
 

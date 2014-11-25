@@ -24,7 +24,7 @@ namespace PE_Explorer
                 Exit();
             }
 
-            FileInfo fi = new FileInfo(args[0]);
+            var fi = new FileInfo(args[0]);
             Logger.Log(ELogTypes.Info, string.Format("Loading {0}", fi.Name));
             Logger.Log(ELogTypes.Info, string.Format("File size : {0} bytes", fi.Length));
 

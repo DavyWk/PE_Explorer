@@ -40,7 +40,7 @@ namespace Core.Utilities
         /// <returns>A null-terminated byte array containning the string</returns>
         public static byte[] ReadString(BinaryReader br)
         {
-            List<byte> list = new List<byte>();
+            var list = new List<byte>();
 
             byte c;
             while ((c = br.ReadByte()) != '\0')

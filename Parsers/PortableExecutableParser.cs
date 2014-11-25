@@ -5,6 +5,7 @@ namespace Parsers
     class PortableExecutableParser
     {
         private readonly PortableExecutable pe;
+
         public PortableExecutableParser(PortableExecutable portableExecutable)
         {
             pe = portableExecutable;
